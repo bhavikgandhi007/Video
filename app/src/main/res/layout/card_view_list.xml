@@ -1,0 +1,51 @@
+<android.support.v7.widget.CardView
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/card_view"
+    android:layout_width="220dp"
+    android:layout_height="100dp"
+    card_view:cardUseCompatPadding="true"
+    card_view:cardCornerRadius="3dp"
+    android:layout_marginBottom="6dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/Chanel_photo"
+            android:layout_width="200dp"
+            android:layout_height="100dp"
+            android:contentDescription="@string/action_settings"
+            android:src="@drawable/pi"
+            android:scaleType="centerCrop" />
+
+        <TextView
+            android:id="@+id/Chanel_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="9pt"
+            android:text="ABCD"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold"
+            android:layout_gravity="center"
+            android:layout_centerInParent="true"
+            />
+
+        <TextView
+            android:id="@+id/Chanel_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="13sp"
+            android:text="ABCD"
+            android:textColor="#000000"
+            android:gravity="center"
+            android:layout_below="@+id/Chanel_photo"
+            android:paddingBottom="8dp"
+            android:paddingTop="8dp"
+            android:layout_alignParentBottom="true"
+            android:background="#FFFFFF"/>
+
+    </RelativeLayout>
+
+</android.support.v7.widget.CardView>

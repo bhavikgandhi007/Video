@@ -1,0 +1,28 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.initapp.vidmateguide.MainActivity" >
+    <item android:id="@+id/action_rateus"
+        android:title="Rate Us"
+        android:orderInCategory="100"
+        app:showAsAction="never" />
+
+
+
+    <item android:id="@+id/action_shareapp"
+        android:title="Share App"
+        android:orderInCategory="100"
+        app:showAsAction="never" />
+
+    <item android:id="@+id/action_vaultappi"
+        android:title="Vault App"
+        android:orderInCategory="100"
+        app:showAsAction="never" />
+
+    <item android:id="@+id/action_applocki"
+        android:title="Private Applock"
+        android:orderInCategory="100"
+        app:showAsAction="never" />
+
+
+</menu>
