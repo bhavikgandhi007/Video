@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/VidmateGuide.iml" filepath="$PROJECT_DIR$/VidmateGuide.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Video.iml" filepath="$PROJECT_DIR$/Video.iml" />
+      <module fileurl="file://$PROJECT_DIR$/YouTubePlayer/YouTubePlayer.iml" filepath="$PROJECT_DIR$/YouTubePlayer/YouTubePlayer.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>

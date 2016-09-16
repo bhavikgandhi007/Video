@@ -45,7 +45,7 @@ public class SplashScreenActivity extends Activity {
 			@Override
 			public void run() {
 				Intent i = new Intent(SplashScreenActivity.this,
-						MainActivity.class);
+						VideoDetailActivity.class);
 				startActivity(i);
 				finish();
 

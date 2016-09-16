@@ -12,15 +12,12 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.initapp.vidmateguide.ComedyActivity;
-import com.initapp.vidmateguide.LatestActivity;
 import com.initapp.vidmateguide.R;
-import com.initapp.vidmateguide.VideoShowActivity;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
-import model.AppData;
+import com.initapp.vidmateguide.model.AppData;
 
 /**
  * Created by Piyush on 8/31/2016.
@@ -53,16 +50,7 @@ public class LatestVideoAdapter extends ArrayAdapter<AppData> {
         videoTitle.setText(appItems.get(position).Title);
         Picasso.with(getContext()).load(appItems.get(position).ImageUrl).placeholder(R.drawable.pi).error(R.drawable.pi).into(videoImage);
 
-        LatestActivity.listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                SharedPreferences.Editor editor = animalPreferences.edit();
-                editor.putString("Video", appItems.get(position).VideoId);
-                editor.commit();
-                Intent intent=new Intent(getContext(),VideoShowActivity.class);
-                activity.startActivity(intent);
-            }
-        });
+
 
 
         return rowView;

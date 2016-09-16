@@ -3,8 +3,6 @@ package adapter;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.Fragment;
-import com.initapp.vidmateguide.ChanelActivity;
-import com.initapp.vidmateguide.LatestActivity;
 
 /**
  * Created by main on 12/31/2015.
@@ -30,9 +28,9 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter {
 
         switch (position){
             case 0:
-                return new ChanelActivity();
+                return null;
             case 1:
-                return new LatestActivity();
+                return null;
 
         }
         return getItem(position);
