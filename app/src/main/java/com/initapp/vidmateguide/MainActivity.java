@@ -3,10 +3,17 @@ package com.initapp.vidmateguide;
 import android.app.Activity;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.os.AsyncTask;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.View;
 
 import com.initapp.vidmateguide.async.BaseRestAsyncTask;
 
@@ -15,8 +22,9 @@ import com.initapp.vidmateguide.model.Result;
 import com.initapp.vidmateguide.model.SearchResult;
 import retrofit.RetrofitError;
 import com.initapp.vidmateguide.webapi.VidmateApiService;
+import com.initapp.vidmateguide.widget.SlidingTabLayout;
 
-public class MainActivity extends Activity {
+public class MainActivity extends AppCompatActivity {
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -30,8 +38,10 @@ public class MainActivity extends Activity {
     /**
      * The {@link ViewPager} that will host the section contents.
      */
-    private ViewPager mViewPager;
+    private ViewPager view_pager;
     ViewPagerAdapter adapter;
+    HomeViewPagerAdapter mViewPagerAdapter;
+    SlidingTabLayout mSlidingTabLayout;
     TabLayout tabLayout;
     CharSequence Titles[] = {"GENRES", "LATEST"};
     int Numboftabs = 2;
@@ -41,13 +51,13 @@ public class MainActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_test);
+        setContentView(R.layout.activity_home);
 
-//        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-//        setSupportActionBar(toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
         // Creating The ViewPagerAdapter and Passing Fragment Manager, Titles fot the Tabs and Number Of Tabs.
-        //adapter = new ViewPagerAdapter(getSupportFragmentManager(), Titles, Numboftabs);
+       // adapter = new ViewPagerAdapter(getSupportFragmentManager(), Titles, Numboftabs);
 
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
@@ -58,35 +68,41 @@ public class MainActivity extends Activity {
 
        // tabLayout = (TabLayout) findViewById(R.id.tabs);
        // tabLayout.setupWithViewPager(mViewPager);
-        GetSearchData getSearchData=new GetSearchData();
-        String part="snippet";
-        String key="AIzaSyBqvC-Gd9Fxb5opmnMZn2bzG9eh_ec2rGA";
-        String order="rating";
-        String query="tarak mehata";
-        String maxresult="5";
-        getSearchData.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR,part,maxresult,order,query,key);
+
+
+        view_pager = (ViewPager) findViewById(R.id.view_pager_home);
+        mSlidingTabLayout = (SlidingTabLayout) findViewById(R.id.sliding_tabs_home);
+
+        view_pager.setVisibility(View.VISIBLE);
+        mViewPagerAdapter = new HomeViewPagerAdapter(getSupportFragmentManager());
+        view_pager.setAdapter(mViewPagerAdapter);
+        mSlidingTabLayout.setCustomTabView(R.layout.tab_indicator, android.R.id.text1);
+        Resources res = getResources();
+        mSlidingTabLayout.setSelectedIndicatorColors(res.getColor(R.color.colorPrimary));
+        mSlidingTabLayout.setDistributeEvenly(true);
+        mSlidingTabLayout.setViewPager(view_pager);
+        view_pager.setOffscreenPageLimit(2);
+        if (mSlidingTabLayout != null) {
+            mSlidingTabLayout.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+                @Override
+                public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+                }
+
+                @Override
+                public void onPageSelected(int position) {
+
+                }
+
+                @Override
+                public void onPageScrollStateChanged(int state) {
+
+                }
+            });
+        }
 
     }
 
-
-    public class GetSearchData extends BaseRestAsyncTask<String, SearchResult> {
-
-        @Override
-        public void onFailure(RetrofitError error) {
-            error.printStackTrace();
-        }
-
-        @Override
-        public void onSuccess(SearchResult result) {
-            //Utility.hideProgressDialog();
-
-        }
-
-        @Override
-        protected Result<SearchResult> doInBackground(String... requestParams) {
-            return VidmateApiService.getInstance().getSearch(requestParams[0], requestParams[1],requestParams[2],requestParams[3],requestParams[4], MainActivity.this);
-        }
-    }
 
 
     private boolean MyStartActivity(Intent aIntent) {
@@ -98,6 +114,39 @@ public class MainActivity extends Activity {
         }
     }
 
+    private class HomeViewPagerAdapter extends FragmentStatePagerAdapter {
+
+        private int NUM_ITEMS = 2;
+        private String[] content = {"LATEST", "POPULAR"};
+
+        public HomeViewPagerAdapter(FragmentManager fm) {
+            super(fm);
+        }
+
+
+        @Override
+        public Fragment getItem(int position) {
+            switch (position) {
+                case 0:
+                    return VideoListFragment.newInstance();
+                case 1:
+                    return VideoListFragment.newInstance();
+                default:
+                    return null;
+            }
+        }
+
+        @Override
+        public int getCount() {
+            return NUM_ITEMS;
+
+        }
+
+        @Override
+        public CharSequence getPageTitle(int position) {
+            return content[position];
+        }
+    }
 
 
 }

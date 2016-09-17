@@ -1,5 +1,7 @@
 package com.initapp.vidmateguide.model;
 
+import java.util.ArrayList;
+
 /**
  * Created by Big_Scal on 9/16/2016.
  */
@@ -8,7 +10,7 @@ public class SearchResult {
 
     private String etag;
 
-    private Items[] items;
+    private ArrayList<Items> items;
 
     private PageInfo pageInfo;
 
@@ -32,11 +34,11 @@ public class SearchResult {
         this.etag = etag;
     }
 
-    public Items[] getItems() {
+    public ArrayList<Items> getItems() {
         return items;
     }
 
-    public void setItems(Items[] items) {
+    public void setItems(ArrayList<Items> items) {
         this.items = items;
     }
 
