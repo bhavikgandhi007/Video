@@ -55,8 +55,9 @@ public class VideoListFragment extends Fragment implements VideoListAdapter.OnLo
         String part = "snippet";
         String key = "AIzaSyBqvC-Gd9Fxb5opmnMZn2bzG9eh_ec2rGA";
         String order = "rating";
-        String query = "tarak mehata";
+        String query = "tarak mehata ka ooltah chashmah";
         String maxresult = "5";
+        String safeSearch="strict";
         getSearchData.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, part, maxresult, order, query, key);
     }
 

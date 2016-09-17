@@ -1,8 +1,10 @@
 package com.initapp.vidmateguide.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +13,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.initapp.vidmateguide.R;
+import com.initapp.vidmateguide.VideoDetailActivity;
 import com.initapp.vidmateguide.model.Items;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
@@ -77,7 +80,8 @@ public class VideoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
     @Override
     public void onBindViewHolder(final RecyclerView.ViewHolder viewHolder, final int i) {
         if (viewHolder instanceof ViewHolderItem) {
-            Items items=itemses.get(i);
+            final Items items=itemses.get(i);
+            Log.i("TAG", "onBindViewHolder: "+items.getId().getVideoId());
             if (!itemses.get(i).getSnippet().getThumbnails().getHigh().getUrl().isEmpty()) {
                 ((ViewHolderItem) viewHolder).textLoading.setVisibility(View.VISIBLE);
                     Picasso.with(context).load(items.getSnippet().getThumbnails().getHigh().getUrl()).into(((ViewHolderItem) viewHolder).image_product, new Callback() {
@@ -95,6 +99,18 @@ public class VideoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                 ((ViewHolderItem) viewHolder).image_product.setVisibility(View.VISIBLE);
                 ((ViewHolderItem) viewHolder).textLoading.setVisibility(View.VISIBLE);
             }
+            ((ViewHolderItem) viewHolder).setClickListener(new ItemClickListener() {
+                @Override
+                public void onClick(View view, int position, boolean isLongClick) {
+                    if(isLongClick){
+
+                    }else{
+                        Intent intent = new Intent(context, VideoDetailActivity.class);
+                        intent.putExtra("videoid", items.getId().getVideoId());
+                        context.startActivity(intent);
+                    }
+                }
+            });
 
         } else if (viewHolder instanceof ProgressViewHolder) {
             ((ProgressViewHolder) viewHolder).progressBar.setIndeterminate(true);

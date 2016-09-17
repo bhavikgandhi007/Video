@@ -31,7 +31,7 @@ public class VidmateApiService {
     }
 
 
-    public Result<SearchResult> getSearch(String part, String maxresult, String order, String query, String key, Context context) {
+    public Result<SearchResult> getSearch(String part, String maxresult, String order, String query, String key,Context context) {
         try {
             return new Result<>(getService(context).getSearch(part, maxresult, order, query, key));
         } catch (RetrofitError error) {
