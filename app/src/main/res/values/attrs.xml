@@ -3,5 +3,8 @@
     <declare-styleable name="ScrimInsetsView">
         <attr name="insetForegroundScrim" format="reference|color" />
     </declare-styleable>
+    <declare-styleable name="CustomFontTextView">
+        <attr name="fontTypeTextView" format="string" />
+    </declare-styleable>
 
 </resources>
