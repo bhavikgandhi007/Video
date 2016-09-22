@@ -5,13 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/video_detail_background"
+    android:layout_below="@+id/toolbar"
     android:orientation="vertical"
     tools:context=".SearchActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_margin="5dp"
+        android:layout_margin="10dp"
         android:layout_marginTop="5dp"
         android:orientation="horizontal">
 
@@ -19,7 +20,7 @@
             android:id="@+id/edit_search"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_marginRight="3dp"
+            android:layout_marginRight="8dp"
             android:layout_weight="0.7"
             android:background="@drawable/edittext_form_selector" />
 
@@ -35,7 +36,7 @@
             android:padding="8dp"
             android:text="SEARCH"
             android:textColor="@android:color/white"
-            app:font="Proxima-Nova-Bold.otf" />
+            app:fontTypeTextView="Proxima-Nova-Bold.otf" />
     </LinearLayout>
 
 

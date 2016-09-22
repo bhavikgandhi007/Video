@@ -19,7 +19,7 @@ public class SearchActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_main_second);
         SearchFragment searchFragment = new SearchFragment();
         Bundle bundle = new Bundle();
         searchFragment.setArguments(bundle);

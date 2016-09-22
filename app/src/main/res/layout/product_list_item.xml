@@ -9,7 +9,7 @@
     <android.support.v7.widget.CardView
         android:id="@+id/product_card"
         android:layout_width="match_parent"
-        android:layout_height="250dp"
+        android:layout_height="wrap_content"
         card_view:cardCornerRadius="5dp"
         card_view:cardElevation="3dp"
         card_view:cardPreventCornerOverlap="false"
@@ -30,26 +30,31 @@
                 <ImageView
                     android:id="@+id/image_product"
                     android:layout_width="match_parent"
-                    android:layout_height="220dp"
+                    android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
                     android:src="@drawable/product" />
 
-                <TextView
+                <com.initapp.vidmateguide.widget.CustomFontTextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
                     android:layout_marginTop="5dp"
                     android:ellipsize="end"
-                    android:gravity="center"
+                    android:gravity="left"
+                    android:padding="5dp"
                     android:singleLine="true"
-                    android:text="This is a Tilte" />
+                    android:text="This is a Tilte"
+                    android:textSize="18sp"
+                    card_view:fontTypeTextView="Proxima-Nova-Bold.otf" />
             </LinearLayout>
 
-            <TextView
+            <ImageView
                 android:id="@+id/textLoading"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:gravity="center"
+                android:src="@drawable/icon_video_play"
                 android:text="Loading.." />
         </RelativeLayout>
     </android.support.v7.widget.CardView>

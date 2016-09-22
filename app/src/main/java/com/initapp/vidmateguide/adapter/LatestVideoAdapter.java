@@ -13,25 +13,25 @@ import android.widget.ProgressBar;
 
 import com.initapp.vidmateguide.R;
 import com.initapp.vidmateguide.VideoDetailActivity;
-import com.initapp.vidmateguide.model.Items;
+import com.initapp.vidmateguide.model.VideoResult;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
 /**
- * Created by Big_Scal on 9/17/2016.
+ * Created by Big_Scal on 9/22/2016.
  */
-public class VideoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class LatestVideoAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     public static final int TYPE_ITEM = 1;
     public static final int TYPE_FOOTER = 3;
     Context context;
-    ArrayList<Items> itemses;
+    ArrayList<VideoResult.Items> itemses;
     OnLoadMoreListener onLoadMoreListener;
     private boolean loading;
     private int lastVisibleItem, totalItemCount, categoryId, visibleThreshold = 6;
 
-    public VideoListAdapter(Context context, final ArrayList<Items> itemses, RecyclerView recyclerView) {
+    public LatestVideoAdapter(Context context, final ArrayList<VideoResult.Items> itemses, RecyclerView recyclerView) {
         this.context = context;
         this.itemses = itemses;
         loading = false;
@@ -79,8 +79,8 @@ public class VideoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
     @Override
     public void onBindViewHolder(final RecyclerView.ViewHolder viewHolder, final int i) {
         if (viewHolder instanceof ViewHolderItem) {
-            final Items items = itemses.get(i);
-            Log.i("TAG", "onBindViewHolder: " + items.getId().getVideoId());
+            final VideoResult.Items items = itemses.get(i);
+            Log.i("TAG", "onBindViewHolder: " + items.getId());
             if (!itemses.get(i).getSnippet().getThumbnails().getMedium().getUrl().isEmpty()) {
                 ((ViewHolderItem) viewHolder).image_product.getLayoutParams().height = 285;
                 ((ViewHolderItem) viewHolder).textLoading.setVisibility(View.VISIBLE);
@@ -106,7 +106,7 @@ public class VideoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
                     } else {
                         Intent intent = new Intent(context, VideoDetailActivity.class);
-                        intent.putExtra("videoid", items.getId().getVideoId());
+                        intent.putExtra("videoid", items.getId());
                         context.startActivity(intent);
                     }
                 }
@@ -187,6 +187,5 @@ public class VideoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
             return true;
         }
     }
-
 
 }

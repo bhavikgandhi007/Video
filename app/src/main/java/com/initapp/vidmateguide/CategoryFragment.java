@@ -25,20 +25,13 @@ public class CategoryFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.activity_search, container, false);
+        return inflater.inflate(R.layout.activity_category, container, false);
 
     }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        button_search = (TextView) view.findViewById(R.id.button_search);
-        edit_search = (EditText) view.findViewById(R.id.edit_search);
-        button_search.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-            }
-        });
+      
     }
 }
