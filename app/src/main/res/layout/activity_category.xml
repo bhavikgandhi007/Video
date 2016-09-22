@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/video_detail_background"
+    android:orientation="vertical">
+
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"
+        android:scrollbarStyle="insideOverlay">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <com.initapp.vidmateguide.widget.CustomFontTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:drawableTop="@drawable/ic_tv_show"
+                android:gravity="center"
+                android:text="TV-Show"
+                android:textSize="18sp"
+                app:font="Proxima-Nova-Bold.otf" />
+
+            <com.initapp.vidmateguide.widget.CustomFontTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:drawableTop="@drawable/ic_music"
+                android:gravity="center"
+                android:text="Music"
+                android:textSize="18sp"
+                app:font="Proxima-Nova-Bold.otf" />
+
+            <com.initapp.vidmateguide.widget.CustomFontTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:drawableTop="@drawable/ic_funny"
+                android:gravity="center"
+                android:text="Comedy"
+                android:textSize="18sp"
+                app:font="Proxima-Nova-Bold.otf" />
+
+            <com.initapp.vidmateguide.widget.CustomFontTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:drawableTop="@drawable/ic_food"
+                android:gravity="center"
+                android:text="Food"
+                android:textSize="18sp"
+                app:font="Proxima-Nova-Bold.otf" />
+
+            <com.initapp.vidmateguide.widget.CustomFontTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:drawableTop="@drawable/ic_fashion"
+                android:gravity="center"
+                android:text="Fashion"
+                android:textSize="18sp"
+                app:font="Proxima-Nova-Bold.otf" />
+
+        </LinearLayout>
+
+
+    </HorizontalScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white">
+
+            <com.initapp.vidmateguide.widget.CustomFontTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:gravity="center"
+                android:text="POPULAR VIDEO CHANNEL"
+                android:textSize="20sp"
+                app:font="Proxima-Nova-Bold.otf" />
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+</LinearLayout>

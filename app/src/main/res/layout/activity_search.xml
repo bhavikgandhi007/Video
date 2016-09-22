@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/video_detail_background"
+    android:orientation="vertical"
+    tools:context=".SearchActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_margin="5dp"
+        android:layout_marginTop="5dp"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/edit_search"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginRight="3dp"
+            android:layout_weight="0.7"
+            android:background="@drawable/edittext_form_selector" />
+
+        <com.initapp.vidmateguide.widget.CustomFontTextView
+            android:layout_width="0dp"
+            android:id="@+id/button_search"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="0.3"
+            android:background="@drawable/bgr_button_common"
+            android:drawableRight="@drawable/ic_search_white_24dp"
+            android:gravity="center"
+            android:padding="8dp"
+            android:text="SEARCH"
+            android:textColor="@android:color/white"
+            app:font="Proxima-Nova-Bold.otf" />
+    </LinearLayout>
+
+
+</RelativeLayout>
