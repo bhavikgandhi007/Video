@@ -78,6 +78,22 @@ public class VidmateApiService {
         }
     }
 
+    public Result<VideoResult> getLatestVideoCategory(String part, String maxresult, String chart, String regionCode, String videoCategoryID, String key, Context context) {
+        try {
+            return new Result<>(getService(context).getLatestVideoCategory(part, maxresult, chart, regionCode, videoCategoryID, key));
+        } catch (RetrofitError error) {
+            return new Result<>(error);
+        }
+    }
+
+    public Result<VideoResult> getWishListVideo(String part, String id, String key, Context context) {
+        try {
+            return new Result<>(getService(context).getWishListVideo(part, id, key));
+        } catch (RetrofitError error) {
+            return new Result<>(error);
+        }
+    }
+
     private VidmateApiClient getService(final Context context) {
         if (service == null) {
             OkHttpClient okHttpClient = new OkHttpClient();

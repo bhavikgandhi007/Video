@@ -82,12 +82,12 @@ public class LatestVideoAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             final VideoResult.Items items = itemses.get(i);
             Log.i("TAG", "onBindViewHolder: " + items.getId());
             if (!itemses.get(i).getSnippet().getThumbnails().getMedium().getUrl().isEmpty()) {
-                ((ViewHolderItem) viewHolder).image_product.getLayoutParams().height = 285;
+                ((ViewHolderItem) viewHolder).image_product.getLayoutParams().height = 400;
                 ((ViewHolderItem) viewHolder).textLoading.setVisibility(View.VISIBLE);
                 Picasso.with(context).load(items.getSnippet().getThumbnails().getHigh().getUrl()).into(((ViewHolderItem) viewHolder).image_product, new Callback() {
                     @Override
                     public void onSuccess() {
-                        ((ViewHolderItem) viewHolder).textLoading.setVisibility(View.GONE);
+                        //((ViewHolderItem) viewHolder).textLoading.setVisibility(View.GONE);
                     }
 
                     @Override

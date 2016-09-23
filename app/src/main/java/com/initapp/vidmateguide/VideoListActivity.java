@@ -2,38 +2,26 @@ package com.initapp.vidmateguide;
 
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-import com.initapp.vidmateguide.adapter.LatestVideoAdapter;
-import com.initapp.vidmateguide.async.BaseRestAsyncTask;
-import com.initapp.vidmateguide.model.Result;
-import com.initapp.vidmateguide.model.VideoResult;
-import com.initapp.vidmateguide.webapi.VidmateApiService;
-import com.pierfrancescosoffritti.youtubeplayer.AbstractYouTubeListener;
-import com.pierfrancescosoffritti.youtubeplayer.YouTubePlayerView;
-
-import retrofit.RetrofitError;
-
 /**
- * Created by Big_Scal on 9/16/2016.
+ * Created by Big_Scal on 9/23/2016.
  */
-public class VideoDetailActivity extends BaseActivity {
+public class VideoListActivity extends BaseActivity {
     private Handler mHandler = new Handler();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_second);
-        VideoDetailFragment videoDetailFragment = new VideoDetailFragment();
+        VideoListFragment videoListFragment = new VideoListFragment();
         Bundle bundle = new Bundle();
-        videoDetailFragment.setArguments(bundle);
+        videoListFragment.setArguments(bundle);
         getSupportFragmentManager().beginTransaction()
-                .replace(R.id.container, videoDetailFragment)
+                .replace(R.id.container, videoListFragment)
                 .commit();
         final Toolbar toolbar = getActionBarToolbar();
         toolbar.setNavigationIcon(R.drawable.ic_up);
@@ -48,7 +36,7 @@ public class VideoDetailActivity extends BaseActivity {
         mHandler.post(new Runnable() {
             @Override
             public void run() {
-                toolbar.setTitle("VIDEO DETAIL".toUpperCase());
+                toolbar.setTitle("SEARCH".toUpperCase());
             }
         });
 
@@ -70,5 +58,4 @@ public class VideoDetailActivity extends BaseActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         return true;
     }
-
 }

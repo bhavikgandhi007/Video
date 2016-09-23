@@ -34,4 +34,12 @@ public interface VidmateApiClient {
 
     @GET("/search")
     SearchResult getEpisodeByChannelID(@Query("part") String part, @Query("maxResults") String maxresult, @Query("order") String order, @Query("q") String query, @Query("channelId") String chanelID, @Query("key") String key);
+
+    @GET("/videos")
+    VideoResult getLatestVideoCategory(@Query("part") String part, @Query("maxResults") String maxresult, @Query("chart") String chart,@Query("regionCode") String regionCode, @Query("videoCategoryId") String videoCategoryID, @Query("key") String key);
+    //chart="mostPopular"&regionCode=IN&videoCategoryId=24
+
+    @GET("/videos")
+    VideoResult getWishListVideo(@Query("part") String part, @Query("id") String id, @Query("key") String key);
+    //?part=snippet&id=Z_PODraXg4E%2CN_jEZsCBFl8
 }

@@ -15,6 +15,7 @@ public class RequestParameter implements Serializable {
     private String channelId;
     private String videoCategoryId;
     private String type;
+    private String regionCode;
 
     public String getPart() {
         return part;
@@ -78,5 +79,13 @@ public class RequestParameter implements Serializable {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public String getRegionCode() {
+        return regionCode;
+    }
+
+    public void setRegionCode(String regionCode) {
+        this.regionCode = regionCode;
     }
 }

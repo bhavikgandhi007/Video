@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.initapp.vidmateguide.model.RequestParameter;
 import com.initapp.vidmateguide.widget.SlidingTabLayout;
 
 import adapter.ViewPagerAdapter;
@@ -56,7 +57,7 @@ public class HomeFragment extends Fragment {
     private class HomeViewPagerAdapter extends FragmentStatePagerAdapter {
 
         private int NUM_ITEMS = 2;
-        private String[] content = {"LATEST", "POPULAR"};
+        private String[] content = {"LATEST", "Trailers"};
 
         public HomeViewPagerAdapter(FragmentManager fm) {
             super(fm);
@@ -67,9 +68,14 @@ public class HomeFragment extends Fragment {
         public Fragment getItem(int position) {
             switch (position) {
                 case 0:
-                    return LatestVideoFragment.newInstance();
+                    RequestParameter requestParameter=new RequestParameter();
+                    return LatestVideoFragment.newInstance("1",requestParameter);
                 case 1:
-                    return VideoListFragment.newInstance();
+                    RequestParameter requestParameter1=new RequestParameter();
+                    requestParameter1.setPart("snippet");
+                    requestParameter1.setVideoCategoryId("1");
+                    return LatestVideoFragment.newInstance("2",requestParameter1);
+                  //  return VideoListFragment.newInstance();
                 default:
                     return null;
             }
@@ -80,7 +86,14 @@ public class HomeFragment extends Fragment {
             return NUM_ITEMS;
 
         }
+//Latest Video Song
+        // https://www.googleapis.com/youtube/v3/videos?part=snippet&chart=mostPopular&maxResults=10&regionCode=IN&videoCategoryId=10&key={YOUR_API_KEY}
 
+        //latest trailers
+        //https://www.googleapis.com/youtube/v3/videos?part=snippet&chart=mostPopular&maxResults=10&regionCode=IN&videoCategoryId=1&key={YOUR_API_KEY}
+
+        //latest Shows
+        //https://www.googleapis.com/youtube/v3/videos?part=snippet&chart=mostPopular&maxResults=10&regionCode=IN&videoCategoryId=24&key={YOUR_API_KEY}
         @Override
         public CharSequence getPageTitle(int position) {
             return content[position];

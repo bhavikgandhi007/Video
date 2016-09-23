@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 
 import com.initapp.vidmateguide.adapter.LatestVideoAdapter;
 import com.initapp.vidmateguide.async.BaseRestAsyncTask;
+import com.initapp.vidmateguide.model.RequestParameter;
 import com.initapp.vidmateguide.model.Result;
 import com.initapp.vidmateguide.model.VideoResult;
 import com.initapp.vidmateguide.webapi.VidmateApiService;
@@ -27,10 +28,13 @@ public class LatestVideoFragment extends Fragment implements LatestVideoAdapter.
     private GridLayoutManager mLayoutManager;
     private RecyclerView.Adapter mAdapter;
     GetLatestVideo getLatestVideo;
+    GetLatestVideoCategory getLatestVideoCategory;
 
-    public static LatestVideoFragment newInstance() {
+    public static LatestVideoFragment newInstance(String reqType, RequestParameter requestParameter) {
         LatestVideoFragment fragment = new LatestVideoFragment();
         Bundle args = new Bundle();
+        args.putString("reqType", reqType);
+        args.putSerializable("parameter", requestParameter);
         fragment.setArguments(args);
         return fragment;
     }
@@ -50,14 +54,28 @@ public class LatestVideoFragment extends Fragment implements LatestVideoAdapter.
         super.onViewCreated(view, savedInstanceState);
         mRecyclerView = (RecyclerView) view.findViewById(R.id.recycler_view);
         mRecyclerView.setHasFixedSize(true);
-        mLayoutManager = new GridLayoutManager(getActivity(), 2);
+        String density=Utills.getDensityName(getActivity());
+        if(density.equals("mdpi")){
+            mLayoutManager = new GridLayoutManager(getActivity(), 2);
+        }else{
+            mLayoutManager = new GridLayoutManager(getActivity(), 1);
+        }
+
         mRecyclerView.setLayoutManager(mLayoutManager);
         retry();
     }
 
     public void retry() {
-        getLatestVideo = new GetLatestVideo();
-        getLatestVideo.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, Utills.SNIPPET, Utills.MAXRESULT, Utills.CHART, Utills.KeyID);
+        String reqType = getArguments().getString("reqType");
+        RequestParameter requestParameter = (RequestParameter) getArguments().getSerializable("parameter");
+        if (reqType.equals("1")) {
+            getLatestVideo = new GetLatestVideo();
+            getLatestVideo.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, Utills.SNIPPET, Utills.MAXRESULT, Utills.CHART, Utills.KeyID);
+        } else if (reqType.equals("2")) {
+            getLatestVideoCategory = new GetLatestVideoCategory();
+            getLatestVideoCategory.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, requestParameter.getPart(), Utills.MAXRESULT, Utills.CHART, Utills.REGION, requestParameter.getVideoCategoryId(), Utills.KeyID);
+        }
+
     }
 
     @Override
@@ -65,6 +83,9 @@ public class LatestVideoFragment extends Fragment implements LatestVideoAdapter.
         super.onDestroyView();
         if (getLatestVideo != null) {
             getLatestVideo.cancel(true);
+        }
+        if (getLatestVideoCategory != null) {
+            getLatestVideoCategory.cancel(true);
         }
     }
 
@@ -92,6 +113,28 @@ public class LatestVideoFragment extends Fragment implements LatestVideoAdapter.
         @Override
         protected Result<VideoResult> doInBackground(String... requestParams) {
             return VidmateApiService.getInstance().getLatestVideo(requestParams[0], requestParams[1], requestParams[2], requestParams[3], getActivity());
+        }
+    }
+
+    public class GetLatestVideoCategory extends BaseRestAsyncTask<String, VideoResult> {
+
+        @Override
+        public void onFailure(RetrofitError error) {
+            error.printStackTrace();
+        }
+
+        @Override
+        public void onSuccess(VideoResult result) {
+            //Utility.hideProgressDialog();
+            mAdapter = new LatestVideoAdapter(getActivity(), result.getItems(), mRecyclerView);
+            ((LatestVideoAdapter) mAdapter).setOnLoadMoreListener(LatestVideoFragment.this);
+            mRecyclerView.setAdapter(mAdapter);
+
+        }
+
+        @Override
+        protected Result<VideoResult> doInBackground(String... requestParams) {
+            return VidmateApiService.getInstance().getLatestVideoCategory(requestParams[0], requestParams[1], requestParams[2], requestParams[3], requestParams[4], requestParams[5], getActivity());
         }
     }
 }
