@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.initapp.vidmateguide.R;
 import com.initapp.vidmateguide.VideoDetailActivity;
@@ -29,7 +30,7 @@ public class VideoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
     ArrayList<Items> itemses;
     OnLoadMoreListener onLoadMoreListener;
     private boolean loading;
-    private int lastVisibleItem, totalItemCount, categoryId, visibleThreshold = 6;
+    private int lastVisibleItem, totalItemCount, categoryId, visibleThreshold = 2;
 
     public VideoListAdapter(Context context, final ArrayList<Items> itemses, RecyclerView recyclerView) {
         this.context = context;
@@ -82,23 +83,24 @@ public class VideoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
             final Items items = itemses.get(i);
             Log.i("TAG", "onBindViewHolder: " + items.getId().getVideoId());
             if (!itemses.get(i).getSnippet().getThumbnails().getMedium().getUrl().isEmpty()) {
-                ((ViewHolderItem) viewHolder).image_product.getLayoutParams().height = 285;
+                ((ViewHolderItem) viewHolder).image_product.getLayoutParams().height = 400;
                 ((ViewHolderItem) viewHolder).textLoading.setVisibility(View.VISIBLE);
                 Picasso.with(context).load(items.getSnippet().getThumbnails().getHigh().getUrl()).into(((ViewHolderItem) viewHolder).image_product, new Callback() {
                     @Override
                     public void onSuccess() {
-                        ((ViewHolderItem) viewHolder).textLoading.setVisibility(View.GONE);
+                        //((ViewHolderItem) viewHolder).textLoading.setVisibility(View.GONE);
                     }
 
                     @Override
                     public void onError() {
-                        ((ViewHolderItem) viewHolder).textLoading.setVisibility(View.VISIBLE);
+                       // ((ViewHolderItem) viewHolder).textLoading.setVisibility(View.VISIBLE);
                     }
                 });
             } else {
                 ((ViewHolderItem) viewHolder).image_product.setVisibility(View.VISIBLE);
                 ((ViewHolderItem) viewHolder).textLoading.setVisibility(View.VISIBLE);
             }
+            ((ViewHolderItem) viewHolder).txt_video_title.setText(items.getSnippet().getTitle());
             ((ViewHolderItem) viewHolder).setClickListener(new ItemClickListener() {
                 @Override
                 public void onClick(View view, int position, boolean isLongClick) {
@@ -163,11 +165,13 @@ public class VideoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         private ItemClickListener clickListener;
         private ImageView image_product;
         private ImageView textLoading;
+        private TextView txt_video_title;
 
         public ViewHolderItem(View itemView) {
             super(itemView);
             image_product = (ImageView) itemView.findViewById(R.id.image_product);
             textLoading = (ImageView) itemView.findViewById(R.id.textLoading);
+            txt_video_title = (TextView) itemView.findViewById(R.id.txt_video_title);
             itemView.setOnClickListener(this);
             itemView.setOnLongClickListener(this);
         }

@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -17,8 +18,7 @@ import com.initapp.vidmateguide.async.BaseRestAsyncTask;
 import com.initapp.vidmateguide.model.Result;
 import com.initapp.vidmateguide.model.VideoResult;
 import com.initapp.vidmateguide.webapi.VidmateApiService;
-import com.pierfrancescosoffritti.youtubeplayer.AbstractYouTubeListener;
-import com.pierfrancescosoffritti.youtubeplayer.YouTubePlayerView;
+
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -30,13 +30,14 @@ import retrofit.RetrofitError;
  * Created by Big_Scal on 9/23/2016.
  */
 public class VideoDetailFragment extends Fragment {
-
+/*
     private GetVideoDetails getVideoDetails;
     TextView txt_video_title, txt_video_desc;
-    ImageView img_wishlist;
+    ImageView img_wishlist, img_share, img_download;
     ArrayList<String> wishItems;
     Gson gson;
     String videoID;
+    YouTubePlayerView youTubePlayerView;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,15 +56,19 @@ public class VideoDetailFragment extends Fragment {
         txt_video_title = (TextView) view.findViewById(R.id.txt_video_title);
         txt_video_desc = (TextView) view.findViewById(R.id.txt_video_desc);
         img_wishlist = (ImageView) view.findViewById(R.id.img_wishlist);
+        img_share = (ImageView) view.findViewById(R.id.img_download);
+        img_download = (ImageView) view.findViewById(R.id.img_download);
         gson = new Gson();
         if (getArguments().getString("videoid") != null) {
-            final String videoID = getArguments().getString("videoid");
+            videoID = getArguments().getString("videoid");
             Log.i("TAG", "onCreate: videoid" + getArguments().getString("videoid"));
-            final YouTubePlayerView youTubePlayerView = (YouTubePlayerView) view.findViewById(R.id.youtube_player_view);
+            youTubePlayerView = (YouTubePlayerView) view.findViewById(R.id.youtube_player_view);
             youTubePlayerView.initialize(new AbstractYouTubeListener() {
                 @Override
                 public void onReady() {
+
                     youTubePlayerView.loadVideo(videoID, 0);
+
                 }
             }, true);
         }
@@ -81,8 +86,21 @@ public class VideoDetailFragment extends Fragment {
                 }
                 if (!wishItems.contains(String.valueOf(videoID))) {
                     wishItems.add(videoID);
+                    Toast.makeText(getActivity(), "Sucessfully Added", Toast.LENGTH_LONG).show();
                     Utills.setWishData(getActivity(), gson.toJson(wishItems));
                 }
+            }
+        });
+        img_share.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+        img_download.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getActivity(), "Video Can't download", Toast.LENGTH_SHORT).show();
             }
         });
         retry();
@@ -95,6 +113,10 @@ public class VideoDetailFragment extends Fragment {
         if (getVideoDetails != null) {
             getVideoDetails.cancel(true);
         }
+        if (youTubePlayerView != null) {
+            youTubePlayerView.release();
+        }
+
     }
 
     private void retry() {
@@ -124,4 +146,5 @@ public class VideoDetailFragment extends Fragment {
             return VidmateApiService.getInstance().getVideoDetails(requestParams[0], requestParams[1], requestParams[2], getActivity());
         }
     }
+    */
 }

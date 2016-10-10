@@ -35,11 +35,6 @@ public class HomeActivity extends BaseActivity {
     }
 
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        menu.clear();
-        return true;
-    }
 
     @Override
     protected String getSelfNavDrawerItem() {
@@ -47,7 +42,9 @@ public class HomeActivity extends BaseActivity {
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        super.onPrepareOptionsMenu(menu);
+        navigationView.getMenu().findItem(R.id.nav_home).setChecked(true);
         return true;
     }
 

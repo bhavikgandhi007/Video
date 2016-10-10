@@ -35,7 +35,6 @@ public class CategoryActivity extends BaseActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        menu.clear();
         return true;
     }
 
@@ -53,7 +52,7 @@ public class CategoryActivity extends BaseActivity {
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
         super.onPrepareOptionsMenu(menu);
-        navigationView.getMenu().findItem(R.id.nav_slideshow).setChecked(true);
+        navigationView.getMenu().findItem(R.id.nav_categories).setChecked(true);
         return true;
     }
 

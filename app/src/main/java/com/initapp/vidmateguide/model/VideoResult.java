@@ -12,6 +12,8 @@ public class VideoResult {
 
     private String kind;
 
+    private String nextPageToken;
+
     public String getEtag() {
         return etag;
     }
@@ -34,6 +36,14 @@ public class VideoResult {
 
     public void setKind(String kind) {
         this.kind = kind;
+    }
+
+    public String getNextPageToken() {
+        return nextPageToken;
+    }
+
+    public void setNextPageToken(String nextPageToken) {
+        this.nextPageToken = nextPageToken;
     }
 
     @Override

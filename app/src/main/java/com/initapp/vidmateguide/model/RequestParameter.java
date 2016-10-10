@@ -16,6 +16,7 @@ public class RequestParameter implements Serializable {
     private String videoCategoryId;
     private String type;
     private String regionCode;
+    private String nextPageToken;
 
     public String getPart() {
         return part;
@@ -87,5 +88,13 @@ public class RequestParameter implements Serializable {
 
     public void setRegionCode(String regionCode) {
         this.regionCode = regionCode;
+    }
+
+    public String getNextPageToken() {
+        return nextPageToken;
+    }
+
+    public void setNextPageToken(String nextPageToken) {
+        this.nextPageToken = nextPageToken;
     }
 }

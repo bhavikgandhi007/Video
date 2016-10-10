@@ -7,6 +7,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.initapp.vidmateguide.model.RequestParameter;
+
 /**
  * Created by Big_Scal on 9/23/2016.
  */
@@ -20,6 +22,19 @@ public class VideoListActivity extends BaseActivity {
         VideoListFragment videoListFragment = new VideoListFragment();
         Bundle bundle = new Bundle();
         videoListFragment.setArguments(bundle);
+        if (getIntent().getStringExtra("keyword") != null) {
+            RequestParameter requestParameter = new RequestParameter();
+            requestParameter.setQ(getIntent().getStringExtra("keyword"));
+            requestParameter.setPart("snippet");
+            requestParameter.setOrder("rating");
+            bundle.putSerializable("parameter", requestParameter);
+            bundle.putString("reqType", "1");
+        } else {
+            if (getIntent().getStringExtra("reqType") != null) {
+                bundle.putSerializable("parameter", getIntent().getSerializableExtra("parameter"));
+                bundle.putString("reqType", getIntent().getStringExtra("reqType"));
+            }
+        }
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.container, videoListFragment)
                 .commit();
@@ -36,12 +51,16 @@ public class VideoListActivity extends BaseActivity {
         mHandler.post(new Runnable() {
             @Override
             public void run() {
-                toolbar.setTitle("SEARCH".toUpperCase());
+                if (getIntent().getStringExtra("keyword") != null) {
+                    toolbar.setTitle(getIntent().getStringExtra("keyword").toUpperCase());
+                } else if (getIntent().getStringExtra("title") != null) {
+                    toolbar.setTitle(getIntent().getStringExtra("title").toUpperCase());
+                }
+
             }
         });
 
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -49,13 +68,11 @@ public class VideoListActivity extends BaseActivity {
         return true;
     }
 
+
     @Override
     protected String getSelfNavDrawerItem() {
         return NAVDRAWER_ITEM_INVALID;
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        return true;
-    }
+
 }

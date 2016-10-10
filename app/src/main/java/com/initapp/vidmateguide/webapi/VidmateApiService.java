@@ -10,10 +10,12 @@ import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Protocol;
 
 import java.util.Arrays;
+import java.util.StringTokenizer;
 
 import retrofit.RestAdapter;
 import retrofit.RetrofitError;
 import retrofit.client.OkClient;
+import retrofit.http.Query;
 
 
 public class VidmateApiService {
@@ -30,33 +32,33 @@ public class VidmateApiService {
     }
 
 
-    public Result<SearchResult> getSearch(String part, String maxresult, String order, String query, String key, Context context) {
+    public Result<SearchResult> getSearch(String part, String maxresult, String order, String query, String key, String nextPageToken, Context context) {
         try {
-            return new Result<>(getService(context).getSearch(part, maxresult, order, query, key));
+            return new Result<>(getService(context).getSearch(part, maxresult, order, query, key, nextPageToken));
         } catch (RetrofitError error) {
             return new Result<>(error);
         }
     }
 
-    public Result<VideoResult> getLatestVideo(String part, String maxresult, String chart, String key, Context context) {
+    public Result<VideoResult> getLatestVideo(String part, String maxresult, String chart, String key, String nexPageToken, Context context) {
         try {
-            return new Result<>(getService(context).getLatestVideo(part, maxresult, chart, key));
+            return new Result<>(getService(context).getLatestVideo(part, maxresult, chart, key, nexPageToken));
         } catch (RetrofitError error) {
             return new Result<>(error);
         }
     }
 
-    public Result<SearchResult> getSearchChannelID(String part, String maxresult, String order, String channelID, String key, Context context) {
+    public Result<SearchResult> getSearchChannelID(String part, String maxresult, String order, String channelID, String key, String nextPageToken, Context context) {
         try {
-            return new Result<>(getService(context).getSearchChannelID(part, maxresult, order, channelID, key));
+            return new Result<>(getService(context).getSearchChannelID(part, maxresult, order, channelID, key, nextPageToken));
         } catch (RetrofitError error) {
             return new Result<>(error);
         }
     }
 
-    public Result<SearchResult> getCategoryVideos(String part, String maxresult, String order, String videocategoryID, String type, String key, Context context) {
+    public Result<SearchResult> getCategoryVideos(String part, String maxresult, String order, String videocategoryID, String type, String key, String nextPageToken, Context context) {
         try {
-            return new Result<>(getService(context).getCategoryVideos(part, maxresult, order, videocategoryID, type, key));
+            return new Result<>(getService(context).getCategoryVideos(part, maxresult, order, videocategoryID, type, key, nextPageToken));
         } catch (RetrofitError error) {
             return new Result<>(error);
         }
@@ -70,17 +72,17 @@ public class VidmateApiService {
         }
     }
 
-    public Result<SearchResult> getEpisodeByChannelID(String part, String maxresult, String order, String query, String channelID, String key, Context context) {
+    public Result<SearchResult> getEpisodeByChannelID(String part, String maxresult, String order, String query, String channelID, String key, String nextPageToken, Context context) {
         try {
-            return new Result<>(getService(context).getEpisodeByChannelID(part, maxresult, order, query, channelID, key));
+            return new Result<>(getService(context).getEpisodeByChannelID(part, maxresult, order, query, channelID, key, nextPageToken));
         } catch (RetrofitError error) {
             return new Result<>(error);
         }
     }
 
-    public Result<VideoResult> getLatestVideoCategory(String part, String maxresult, String chart, String regionCode, String videoCategoryID, String key, Context context) {
+    public Result<VideoResult> getLatestVideoCategory(String part, String maxresult, String chart, String regionCode, String videoCategoryID, String key, String nexPageToken, Context context) {
         try {
-            return new Result<>(getService(context).getLatestVideoCategory(part, maxresult, chart, regionCode, videoCategoryID, key));
+            return new Result<>(getService(context).getLatestVideoCategory(part, maxresult, chart, regionCode, videoCategoryID, key, nexPageToken));
         } catch (RetrofitError error) {
             return new Result<>(error);
         }

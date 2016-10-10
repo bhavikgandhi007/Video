@@ -43,6 +43,7 @@
                     android:ellipsize="end"
                     android:gravity="left"
                     android:paddingLeft="10dp"
+                    android:id="@+id/txt_video_title"
                     android:singleLine="true"
                     android:text="This is a Tilte"
                     android:textSize="18sp"

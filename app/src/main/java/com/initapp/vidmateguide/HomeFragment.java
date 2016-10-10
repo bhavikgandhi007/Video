@@ -47,17 +47,18 @@ public class HomeFragment extends Fragment {
         view_pager.setAdapter(mViewPagerAdapter);
         mSlidingTabLayout.setCustomTabView(R.layout.tab_indicator, android.R.id.text1);
         Resources res = getResources();
-        mSlidingTabLayout.setSelectedIndicatorColors(res.getColor(R.color.colorPrimary));
+        mSlidingTabLayout.setSelectedIndicatorColors(res.getColor(R.color.nav_side));
         mSlidingTabLayout.setDistributeEvenly(true);
         mSlidingTabLayout.setViewPager(view_pager);
         view_pager.setOffscreenPageLimit(2);
+
 
     }
 
     private class HomeViewPagerAdapter extends FragmentStatePagerAdapter {
 
-        private int NUM_ITEMS = 2;
-        private String[] content = {"LATEST", "Trailers"};
+        private int NUM_ITEMS = 3;
+        private String[] content = {"Most Popular", "Trailers", "Video Song"};
 
         public HomeViewPagerAdapter(FragmentManager fm) {
             super(fm);
@@ -68,14 +69,19 @@ public class HomeFragment extends Fragment {
         public Fragment getItem(int position) {
             switch (position) {
                 case 0:
-                    RequestParameter requestParameter=new RequestParameter();
-                    return LatestVideoFragment.newInstance("1",requestParameter);
+                    RequestParameter requestParameter = new RequestParameter();
+                    return LatestVideoFragment.newInstance("1", requestParameter);
                 case 1:
-                    RequestParameter requestParameter1=new RequestParameter();
+                    RequestParameter requestParameter1 = new RequestParameter();
                     requestParameter1.setPart("snippet");
                     requestParameter1.setVideoCategoryId("1");
-                    return LatestVideoFragment.newInstance("2",requestParameter1);
-                  //  return VideoListFragment.newInstance();
+                    return LatestVideoFragment.newInstance("2", requestParameter1);
+                case 2:
+                    RequestParameter requestParameter2 = new RequestParameter();
+                    requestParameter2.setPart("snippet");
+                    requestParameter2.setVideoCategoryId("10");
+                    return LatestVideoFragment.newInstance("2", requestParameter2);
+                //  return VideoListFragment.newInstance();
                 default:
                     return null;
             }

@@ -1,5 +1,6 @@
 package com.initapp.vidmateguide;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -31,12 +32,20 @@ public class SearchFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        button_search= (TextView) view.findViewById(R.id.button_search);
-        edit_search= (EditText) view.findViewById(R.id.edit_search);
+        button_search = (TextView) view.findViewById(R.id.button_search);
+        edit_search = (EditText) view.findViewById(R.id.edit_search);
         button_search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                if (edit_search.getText().toString() != null) {
+                    if (!edit_search.getText().toString().trim().equalsIgnoreCase("")) {
+                        Intent videointent=new Intent(getActivity(),VideoListActivity.class);
+                        videointent.putExtra("keyword",edit_search.getText().toString().trim());
+                        startActivity(videointent);
+                        getActivity().overridePendingTransition(R.anim.pull_in_right, R.anim.push_out_left);
+                        getActivity().finish();
+                    }
+                }
             }
         });
     }
